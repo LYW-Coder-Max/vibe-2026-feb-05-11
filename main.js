@@ -25,6 +25,7 @@ class TotoGenerator extends HTMLElement {
         align-items: center;
         margin-top: 50px;
         font-family: sans-serif;
+        color: var(--toto-generator-text-color);
       }
       .numbers-container {
         display: flex;
@@ -37,7 +38,7 @@ class TotoGenerator extends HTMLElement {
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        background-color: #f0f0f0;
+        background-color: var(--toto-generator-number-background);
         margin: 0 5px;
         font-size: 24px;
         font-weight: bold;
@@ -49,8 +50,8 @@ class TotoGenerator extends HTMLElement {
         cursor: pointer;
         border: none;
         border-radius: 5px;
-        background-color: #4CAF50;
-        color: white;
+        background-color: var(--toto-generator-button-background);
+        color: var(--toto-generator-button-text);
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
         transition: 0.3s;
       }
@@ -83,3 +84,31 @@ class TotoGenerator extends HTMLElement {
 }
 
 customElements.define('toto-generator', TotoGenerator);
+
+// Theme toggle logic
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // Apply saved theme or default to light
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        body.classList.remove('light-theme', 'dark-theme');
+        body.classList.add(savedTheme);
+    } else {
+        body.classList.add('light-theme'); // Default theme
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+        if (body.classList.contains('light-theme')) {
+            body.classList.remove('light-theme');
+            body.classList.add('dark-theme');
+            localStorage.setItem('theme', 'dark-theme');
+        } else {
+            body.classList.remove('dark-theme');
+            body.classList.add('light-theme');
+            localStorage.setItem('theme', 'light-theme');
+        }
+    });
+});
+

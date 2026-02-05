@@ -1,4 +1,20 @@
 
+:root {
+    --background-color: #f7f7f7;
+    --text-color: #333;
+    --button-background: #4CAF50;
+    --button-text: white;
+    --number-background: #f0f0f0;
+}
+
+body.dark-theme {
+    --background-color: #333;
+    --text-color: #f7f7f7;
+    --button-background: #2E8B57;
+    --button-text: white;
+    --number-background: #555;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     display: flex;
@@ -6,5 +22,15 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f7f7f7;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
+
+/* Update styles for the Web Component to use CSS variables */
+toto-generator {
+    --toto-generator-text-color: var(--text-color);
+    --toto-generator-button-background: var(--button-background);
+    --toto-generator-button-text: var(--button-text);
+    --toto-generator-number-background: var(--number-background);
+}
+
